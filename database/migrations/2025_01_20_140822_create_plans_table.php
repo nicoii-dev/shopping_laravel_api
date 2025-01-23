@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
-            $table->uuidMorphs('tokenable');
+        Schema::create('plans', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('stripe_product_id');
+            $table->string('stripe_price_id');
             $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->decimal('price', 8, 2);
+            $table->longText('description')->nullable();
+            $table->integer('post_per_day');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('plans');
     }
 };

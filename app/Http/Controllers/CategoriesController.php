@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -11,7 +12,25 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = DB::table('categories')
+            ->select('id', 'name')
+            ->get();
+
+        $categoriesWithProducts = [];
+
+        foreach ($categories as $category) {
+            $products = DB::table('products')
+                ->where('category_id', $category->id)
+                ->select('id', 'name', 'price' , )
+                ->get();
+
+            $categoriesWithProducts[] = [
+                'id' => $category->id,
+                'name' => $category->name,
+                'products' => $products->toArray(), // Convert products to an array
+            ];
+        }
+        return response()->json($categoriesWithProducts, 200);
     }
 
     /**

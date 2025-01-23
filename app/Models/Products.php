@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Uuids;
 
 class Products extends Model
 {
@@ -11,7 +12,8 @@ class Products extends Model
     use HasFactory;
 
     protected $fillable = [
-        'categories_id',
+        'category_id',
+        'stripe_product_id',
         'name',
         'price',
         'quantity',

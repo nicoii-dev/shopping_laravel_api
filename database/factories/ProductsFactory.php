@@ -17,7 +17,7 @@ class ProductsFactory extends Factory
     public function definition(): array
     {
         return [
-            'categories_id' => Categories::inRandomOrder()->first()->id,
+            'category_id' => Categories::inRandomOrder()->first()->id,
             'name' => fake()->name(),
             'price' => fake()->randomNumber(3, true),
             'quantity' => fake()->randomDigit(),

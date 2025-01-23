@@ -19,7 +19,7 @@ class ResetPassword extends Mailable
      *
      * @return void
      */
-    public function __construct( $user,$link)
+    public function __construct($user, $link)
     {
         $this->user = $user;
         $this->link = $link;
@@ -33,9 +33,9 @@ class ResetPassword extends Mailable
     public function build()
     {
         return $this->view('email.resetpassword')
-                    ->with([
-                        'user' => $this->user,
-                        'link' => $this->link
-                    ]);
+            ->with([
+                'user' => $this->user,
+                'link' => $this->link
+            ]);
     }
 }
