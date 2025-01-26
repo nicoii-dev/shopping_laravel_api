@@ -18,7 +18,7 @@ class PlansController extends Controller
      */
     public function index(Request $request)
     {
-        $plans = DB::table("plans")->paginate($request->per_page);
+        $plans = DB::table("plans")->where('name', 'LIKE', "%$request->search%")->orderBy('name')->paginate($request->per_page);
         return response()->json($plans, 200);
     }
 

@@ -21,7 +21,7 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         // $products = Products::all();
-        $products = DB::table(table: "products")->paginate($request->per_page);
+        $products = DB::table(table: "products")->where('name', 'LIKE', "%$request->search%")->orderBy('name')->paginate($request->per_page);
         return response()->json($products, status: 200);
 
     }

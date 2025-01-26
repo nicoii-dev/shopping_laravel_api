@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Uuids;
-
-class Products extends Model
+class StoreAddress extends Model
 {
 
     use HasFactory, Uuids;
 
     protected $fillable = [
-        'category_id',
-        'stripe_product_id',
-        'name',
-        'price',
-        'quantity',
-        'description',
-        'images',
+        'store_id',
+        'main',
+        'branch_number',
+        'street',
+        'barangay',
+        'city',
+        'province',
+        'region',
+        'zipcode',
     ];
 }
